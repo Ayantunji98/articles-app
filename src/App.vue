@@ -58,7 +58,7 @@ import ArticleList from './components/ArticleList.vue'
 type ViewMode = 'list' | 'create' | 'edit' | 'archived' | 'detail'
 
 const currentView = ref<ViewMode>('list')
-const editingArticleId = ref<number | null>(null)
+const editingArticleId = ref<number | undefined>(undefined)
 const viewingArticleId = ref<number | null>(null)
 
 const handleEditArticle = (articleId: number) => {
@@ -78,19 +78,17 @@ const handleEditArticleFromDetail = (articleId: number) => {
 
 const handleArticleSaved = () => {
   currentView.value = 'list'
-  editingArticleId.value = null
+  editingArticleId.value = undefined
   viewingArticleId.value = null
 }
 
 const handleCancel = () => {
   currentView.value = 'list'
-  editingArticleId.value = null
+  editingArticleId.value = undefined
   viewingArticleId.value = null
 }
 
 const handleRestoreArticle = () => {
-  // Stay in archived view, the list will update automatically via reactivity
-  // You could add a toast notification here if desired
   console.log('Article restored')
 }
 </script>
